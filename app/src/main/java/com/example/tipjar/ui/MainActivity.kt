@@ -105,6 +105,11 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  override fun onSaveInstanceState(outState: Bundle) {
+    outState.putBoolean(BACK_BUTTON_STATE, isBackButtonVisible)
+    super.onSaveInstanceState(outState)
+  }
+
   companion object {
     private const val BACK_BUTTON_STATE = "com.example.tipjar.backButtonState"
   }

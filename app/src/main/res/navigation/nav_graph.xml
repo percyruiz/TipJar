@@ -13,7 +13,7 @@
     <action
         android:id="@+id/action_list_to_detail"
         app:destination="@id/viewTipsFragment"
-        app:popUpTo="@id/addTipFragment"/>
+        app:popUpTo="@id/addTipFragment" />
   </fragment>
 
   <fragment
