@@ -14,12 +14,12 @@ import javax.inject.Singleton
 @Module
 object DatabaseModule {
 
-    @Singleton
-    @Provides
-    fun providesTipDatabase(
-        @ApplicationContext context: Context
-    ): TipDatabase {
-        return TipDatabase.getInstance(context)
-    }
+//    @Singleton
+//    @Provides
+//    fun providesTipDatabase(
+//        @ApplicationContext context: Context
+//    ): TipDatabase {
+//        return TipDatabase.getInstance(context)
+//    }
 
 }

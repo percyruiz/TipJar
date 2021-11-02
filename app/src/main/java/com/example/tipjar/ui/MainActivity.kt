@@ -1,17 +1,23 @@
 package com.example.tipjar.ui
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.example.tipjar.R
 import com.example.tipjar.databinding.ActivityMainBinding
+import com.example.tipjar.ui.addtip.AddTipFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * View activity that handles navigation and setting toolbar views/status
@@ -26,6 +32,8 @@ class MainActivity : AppCompatActivity() {
   private lateinit var appBarConfig: AppBarConfiguration
   private var isBackButtonVisible = false
   private var isMenuVisible = false
+
+  private val sharedViewModel by viewModel<MainSharedViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -77,6 +85,13 @@ class MainActivity : AppCompatActivity() {
       title = null
       setHomeAsUpIndicator(R.drawable.ic_back_button)
     }
+
+    sharedViewModel.paymentSuccessLiveData.observe(this, Observer {
+      Handler().postDelayed({
+        findNavController(R.id.nav_host_fragment)
+          .navigate(AddTipFragmentDirections.actionListToDetail())
+      }, 1500)
+    })
   }
 
   override fun onSupportNavigateUp(): Boolean {

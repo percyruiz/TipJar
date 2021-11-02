@@ -122,7 +122,8 @@
         android:maxLines="1"
         android:paddingEnd="11dp"
         android:inputType="number"
-        android:text="@string/default_tip"
+        android:maxLength="8"
+        android:hint="@string/default_tip"
         android:textAppearance="?textAppearanceHeadline3"
         app:layout_constraintEnd_toStartOf="@id/end_guideline"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
@@ -191,6 +192,7 @@
         />
 
     <Button
+        android:id="@+id/save_payment_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

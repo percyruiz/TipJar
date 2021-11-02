@@ -13,7 +13,12 @@
     <string name="total_tip_value">"\$ %1$.2f"</string>
     <string name="per_person_value">"\$ %1$.2f"</string>
     <string name="take_photo">Take photo of receipt</string>
+    <string name="payment_saved_msg">"Payment saved!"</string>
+    <string name="permission_rationale_msg">"Please allow camera and write storage permission to save photo"</string>
 
     <!-- View Tips -->
     <string name="saved_payments">Saved Payments</string>
+    
+    <!-- Error -->
+    <string name="camera_permission_denied">Cannot add photo since camera permission is denied</string>
 </resources>

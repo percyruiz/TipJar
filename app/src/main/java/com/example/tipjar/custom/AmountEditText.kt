@@ -10,6 +10,8 @@ import com.example.tipjar.R
 import android.text.Spanned
 
 import android.text.InputFilter
+import android.util.TypedValue
+import androidx.core.content.ContextCompat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import com.example.tipjar.custom.AmountEditText.DecimalDigitsInputFilter
@@ -33,6 +35,11 @@ class AmountEditText @JvmOverloads constructor(
     val resId = ta.getResourceId(0, 0)
     ta.recycle()
     setTextAppearance(context, resId)
+
+    val resolvedAttr = TypedValue()
+    context.theme.resolveAttribute(R.attr.colorOnSurface, resolvedAttr, true)
+    val colorRes = resolvedAttr.run { if (resourceId != 0) resourceId else data }
+    setTextColor(ContextCompat.getColor(context, colorRes))
 
     maxLines = 1
 

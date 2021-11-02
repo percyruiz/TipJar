@@ -1,4 +1,4 @@
-package com.example.tipjar.ui
+package com.example.tipjar.ui.viewtip
 
 import android.os.Bundle
 import android.view.LayoutInflater
