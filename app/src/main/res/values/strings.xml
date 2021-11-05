@@ -18,7 +18,16 @@
 
     <!-- View Tips -->
     <string name="saved_payments">Saved Payments</string>
+    <string name="date_picker_start_hint">start</string>
+    <string name="date_picker_end_hint">end</string>
+    <string name="date_format">"%1$d/%2$d/%3$d"</string>
     
     <!-- Error -->
     <string name="camera_permission_denied">Cannot add photo since camera permission is denied</string>
+    <string name="start_date_null">Cannot add photo since camera permission is denied</string>
+    <string name="end_date_null">Cannot add photo since camera permission is denied</string>
+
+    <!-- Tip Item -->
+    <string name="tip_item_total">"\$%1$.2f"</string>
+    <string name="tip_item_tip_value">"Tip: \$%1$.2f"</string>
 </resources>

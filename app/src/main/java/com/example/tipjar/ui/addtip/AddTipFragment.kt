@@ -24,21 +24,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.tipjar.R
 import com.example.tipjar.custom.RepeatListener
+import com.example.tipjar.data.Result
 import com.example.tipjar.databinding.FragmentAddTipBinding
+import com.example.tipjar.ui.MainSharedViewModel
+import com.example.tipjar.util.debounce
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.example.tipjar.data.Result
-import com.example.tipjar.ui.MainSharedViewModel
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
-import androidx.core.app.ActivityCompat.startActivityForResult
-
-
 
 
 /**
@@ -91,6 +87,7 @@ class AddTipFragment : Fragment() {
       takePhotoCheckBox.isChecked = photoCheckBoxInstance
     }
 
+    // compute tip and per person on default values or from values fetched from savedInstanceState
     computeTip()
 
     binding.addCounterView.setOnTouchListener(RepeatListener(400, 100) {
@@ -103,7 +100,7 @@ class AddTipFragment : Fragment() {
       val peopleCount = binding.peopleCountTextView.text.toString().toInt()
       if (peopleCount != 1) {
         binding.peopleCountTextView.text = peopleCount.dec().toString()
-        computeTip(people = peopleCount.inc())
+        computeTip(people = peopleCount.dec())
       }
     })
 
@@ -112,10 +109,10 @@ class AddTipFragment : Fragment() {
     }
 
     binding.percentTipEditText.doOnTextChanged { text, _, _, _ ->
-      computeTip(tip = text.toString().getFloat())
+      computeTip(tip = text.toString().getFloat(DEFAULT_PERCENTAGE.toFloat()))
     }
 
-    binding.savePaymentButton.setOnClickListener {
+    binding.savePaymentButton.debounce {
       savePayment()
     }
 
@@ -128,6 +125,7 @@ class AddTipFragment : Fragment() {
               resetViews()
               showToast(strId = R.string.payment_saved_msg)
               sharedViewModel.triggerPaymentSuccess()
+              currentPhotoPath = null
             }
             Result.Status.ERROR -> {
               showToast(strMsg = it.message.toString())
@@ -142,7 +140,7 @@ class AddTipFragment : Fragment() {
     }
   }
 
-  fun resetViews() {
+  private fun resetViews() {
     binding.run {
       amountEditText.text = null
       peopleCountTextView.text = DEFAULT_PEOPLE_COUNT.toString()

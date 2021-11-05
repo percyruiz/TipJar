@@ -2,16 +2,16 @@ package com.example.tipjar.ui.addtip
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tipjar.data.Result
 import com.example.tipjar.repository.TipJarRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
-import com.example.tipjar.data.Result
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 
 /**
  * Contains logic for adding tips
@@ -31,7 +31,7 @@ class AddTipViewModel(
     val tip = (tipPercentage / 100) * amount
     val total = amount + tip
     viewModelScope.launch(dispatcher) {
-      repository.addTip("$$total", "$$tip", photoPath)
+      repository.addTip(total, tip, photoPath)
         .catch { e ->
           _addTipFlow.send(Result.error(e.toString()))
         }

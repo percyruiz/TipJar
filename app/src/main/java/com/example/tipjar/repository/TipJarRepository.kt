@@ -1,15 +1,20 @@
 package com.example.tipjar.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.example.tipjar.data.Result
 import com.example.tipjar.database.TipDatabase
 import com.example.tipjar.database.entity.Tip
-import com.example.tipjar.data.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 interface TipJarRepository {
-  suspend fun addTip(total: String, tipValue: String, photoPath: String?): Flow<Result<Boolean>>
+  suspend fun addTip(total: Float, tipValue: Float, photoPath: String?): Flow<Result<Boolean>>
+  suspend fun getAllTips(): Flow<PagingData<Tip>>
+  suspend fun getTipsWithRange(start: Long, end: Long): Flow<PagingData<Tip>>
 }
 
 /**
@@ -20,8 +25,8 @@ interface TipJarRepository {
 class TipJarRepositoryImpl(val db: TipDatabase) : TipJarRepository {
 
   override suspend fun addTip(
-    total: String,
-    tipValue: String,
+    total: Float,
+    tipValue: Float,
     photoPath: String?
   ): Flow<Result<Boolean>> {
     return flow {
@@ -41,6 +46,18 @@ class TipJarRepositoryImpl(val db: TipDatabase) : TipJarRepository {
 
     }.flowOn(Dispatchers.IO)
   }
+
+  override suspend fun getAllTips(): Flow<PagingData<Tip>> = Pager(
+    config = PagingConfig(pageSize = 60, enablePlaceholders = true, maxSize = 200)
+  ) {
+    db.tipJarDao().getAll()
+  }.flow
+
+  override suspend fun getTipsWithRange(start: Long, end: Long): Flow<PagingData<Tip>> = Pager(
+    config = PagingConfig(pageSize = 60, enablePlaceholders = true, maxSize = 200)
+  ) {
+    db.tipJarDao().getWithRange(start, end)
+  }.flow
 
   private suspend fun <T> safeDbCall(dbCall: suspend () -> T): Result<T> {
     return try {
