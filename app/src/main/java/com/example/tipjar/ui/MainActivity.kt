@@ -1,14 +1,13 @@
 package com.example.tipjar.ui
 
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -87,12 +86,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     sharedViewModel.paymentSuccessLiveData.observe(this, Observer {
-      Handler().postDelayed({
         findNavController(R.id.nav_host_fragment)
-          .navigate(AddTipFragmentDirections.actionListToDetail())
-      }, 1500)
+          .safeNavigate(AddTipFragmentDirections.actionListToDetail())
     })
   }
+
+  fun NavController.safeNavigate(direction: NavDirections) {
+    currentDestination?.getAction(direction.actionId)?.run { navigate(direction) }
+  }
+
 
   override fun onSupportNavigateUp(): Boolean {
     return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfig)

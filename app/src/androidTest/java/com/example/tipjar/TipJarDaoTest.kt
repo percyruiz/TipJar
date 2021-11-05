@@ -46,7 +46,7 @@ class AccountDAOTest {
 
   @Test
   fun insertAndGet() = runBlockingTest {
-    val tip = Tip(1, "100", "10", "path", System.currentTimeMillis())
+    val tip = Tip(1, 100.0f, 10.0f, "path", System.currentTimeMillis())
     db.tipJarDao().insert(tip)
     val db = async {
       db.tipJarDao().getTip(1)

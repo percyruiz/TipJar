@@ -5,15 +5,85 @@
     android:layout_height="match_parent"
     >
 
-  <Button
-      android:layout_width="wrap_content"
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/start_date_text_input_layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:text="View tips fragment"
-      android:textAllCaps="false"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      app:endIconDrawable="@drawable/ic_close"
+      app:endIconMode="clear_text"
+      app:hintEnabled="false"
+      app:layout_constraintEnd_toStartOf="@id/end_date_text_input_layout"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
+      >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/start_date_text_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="@string/date_picker_start_hint"
+        android:inputType="none"
+        />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/end_date_text_input_layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      app:endIconDrawable="@drawable/ic_close"
+      app:endIconMode="clear_text"
+      app:hintEnabled="false"
+      app:layout_constraintEnd_toStartOf="@id/search_image_view"
+      app:layout_constraintStart_toEndOf="@id/start_date_text_input_layout"
+      app:layout_constraintTop_toTopOf="parent"
+      >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/end_date_text_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:editable="false"
+        android:focusable="false"
+        android:hint="@string/date_picker_end_hint"
+        android:inputType="none"
+        />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <ImageView
+      android:id="@+id/search_image_view"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:layout_marginEnd="16dp"
+      android:foreground="?selectableItemBackground"
+      app:layout_constraintBottom_toBottomOf="@+id/end_date_text_input_layout"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/end_date_text_input_layout"
+      app:srcCompat="@drawable/ic_search"
+      />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_marginTop="24dp"
+      android:scrollbars="vertical"
+      app:layoutManager="LinearLayoutManager"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/start_date_text_input_layout"
       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
