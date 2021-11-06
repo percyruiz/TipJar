@@ -5,7 +5,7 @@ This application implements tip computation and receipt details saving features 
 Implemented features are:
    - Adding Tips (computations, taking photo, local db saving)
    - Viewing Receipts (getting receipts list from local db)
-   - Searching Receipts (range date)
+   - Searching Receipts (date range)
    - Deleting Receipts (swipe to delete receipt item)
 
 ## Installation
