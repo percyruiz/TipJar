@@ -46,10 +46,6 @@ class AddTipFragment : Fragment() {
   private val binding
     get() = _binding!!
 
-  private var amountValueInstance: String? = null
-  private var peopleValueInstance: String? = null
-  private var tipValueInstance: String? = null
-  private var photoCheckBoxInstance: Boolean = false
   private val viewModel: AddTipViewModel by viewModel()
   private val sharedViewModel by sharedViewModel<MainSharedViewModel>()
 
@@ -64,30 +60,11 @@ class AddTipFragment : Fragment() {
     return binding.root
   }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    savedInstanceState?.run {
-      amountValueInstance = getString(AMOUNT_VALUE)
-      peopleValueInstance = getString(PEOPLE_VALUE)
-      tipValueInstance = getString(TIP_VALUE)
-      photoCheckBoxInstance = getBoolean(TAKE_PHOTO, false)
-    }
-  }
-
   @InternalCoroutinesApi
   @SuppressLint("ClickableViewAccessibility")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    // Set previous value after config change
-    binding.run {
-      amountEditText.setText(amountValueInstance.orEmpty())
-      peopleCountTextView.text = peopleValueInstance ?: DEFAULT_PEOPLE_COUNT.toString()
-      percentTipEditText.setText(tipValueInstance.orEmpty())
-      takePhotoCheckBox.isChecked = photoCheckBoxInstance
-    }
-
-    // compute tip and per person on default values or from values fetched from savedInstanceState
     computeTip()
 
     binding.addCounterView.setOnTouchListener(RepeatListener(400, 100) {
@@ -254,24 +231,10 @@ class AddTipFragment : Fragment() {
     }
   }
 
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    outState.run {
-      putString(AMOUNT_VALUE, binding.amountEditText.text.toString())
-      putString(PEOPLE_VALUE, binding.peopleCountTextView.text.toString())
-      putString(TIP_VALUE, binding.percentTipEditText.text.toString())
-      putBoolean(TIP_VALUE, binding.takePhotoCheckBox.isChecked)
-    }
-  }
-
   companion object {
     private const val DEFAULT_AMOUNT = 100.00f
     private const val DEFAULT_PERCENTAGE = 10
     private const val DEFAULT_PEOPLE_COUNT = 1
-    private const val AMOUNT_VALUE = "com.example.tipjar.amountValue"
-    private const val PEOPLE_VALUE = "com.example.tipjar.peopleValue"
-    private const val TIP_VALUE = "com.example.tipjar.tipValue"
-    private const val TAKE_PHOTO = "com.example.tipjar.takePhoto"
 
     private val REQUIRED_PERMISSIONS =
       arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
