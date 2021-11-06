@@ -1,10 +1,7 @@
 package com.example.tipjar.database.dao
 
 import androidx.paging.PagingSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.tipjar.database.entity.Tip
 
 @Dao
@@ -20,4 +17,7 @@ interface TipJarDao {
 
   @Query("SELECT * FROM tip WHERE timestamp BETWEEN :start AND :end")
   fun getWithRange(start: Long, end: Long): PagingSource<Int, Tip>
+
+  @Delete
+  fun delete(tip: Tip)
 }

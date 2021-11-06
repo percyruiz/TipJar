@@ -15,6 +15,7 @@ interface TipJarRepository {
   suspend fun addTip(total: Float, tipValue: Float, photoPath: String?): Flow<Result<Boolean>>
   suspend fun getAllTips(): Flow<PagingData<Tip>>
   suspend fun getTipsWithRange(start: Long, end: Long): Flow<PagingData<Tip>>
+  suspend fun removeTip(tip: Tip)
 }
 
 /**
@@ -58,6 +59,10 @@ class TipJarRepositoryImpl(val db: TipDatabase) : TipJarRepository {
   ) {
     db.tipJarDao().getWithRange(start, end)
   }.flow
+
+  override suspend fun removeTip(tip: Tip) {
+    db.tipJarDao().delete(tip)
+  }
 
   private suspend fun <T> safeDbCall(dbCall: suspend () -> T): Result<T> {
     return try {

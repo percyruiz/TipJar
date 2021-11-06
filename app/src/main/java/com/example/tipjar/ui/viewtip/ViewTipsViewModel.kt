@@ -8,7 +8,9 @@ import androidx.paging.cachedIn
 import com.example.tipjar.data.Search
 import com.example.tipjar.database.entity.Tip
 import com.example.tipjar.repository.TipJarRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.launch
 
 /**
  * Contains logic for viewing and searching tips
@@ -40,6 +42,12 @@ class ViewTipsViewModel(
 
   fun search(start: Long? = null, end: Long? = null) {
     handle.set(SEARCH, Search(start, end))
+  }
+
+  fun remove(tip: Tip) {
+    viewModelScope.launch(Dispatchers.IO) {
+      repository.removeTip(tip)
+    }
   }
 
   companion object {
