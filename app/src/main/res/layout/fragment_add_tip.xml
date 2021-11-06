@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fillViewport="true"
+      >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+      <TextView
+          android:id="@+id/enter_amount_text_view"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:text="@string/enter_amount"
+          android:textAppearance="?textAppearanceSubtitle1"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/top_guideline"
+          />
+
+      <com.example.tipjar.custom.AmountEditText
+          android:id="@+id/amount_edit_text"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/enter_amount_text_view"
+          />
+
+      <TextView
+          android:id="@+id/how_many_people_text_view"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:text="@string/how_many_people"
+          android:textAppearance="?textAppearanceSubtitle1"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/amount_edit_text"
+          />
+
+      <RelativeLayout
+          android:id="@+id/add_counter_view"
+          android:layout_width="71dp"
+          android:layout_height="71dp"
+          android:layout_marginTop="24dp"
+          android:background="@drawable/ellipse_state"
+          android:clickable="true"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/how_many_people_text_view"
+          >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_add"
+            />
+
+      </RelativeLayout>
+
+      <TextView
+          android:id="@+id/people_count_text_view"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginEnd="16dp"
+          android:gravity="center"
+          android:text="1"
+          android:textAppearance="?textAppearanceHeadline3"
+          android:textColor="?colorOnSurface"
+          app:layout_constraintBottom_toBottomOf="@id/add_counter_view"
+          app:layout_constraintEnd_toStartOf="@id/minus_counter_view"
+          app:layout_constraintStart_toEndOf="@id/add_counter_view"
+          app:layout_constraintTop_toTopOf="@id/add_counter_view"
+          />
+
+      <RelativeLayout
+          android:id="@+id/minus_counter_view"
+          android:layout_width="71dp"
+          android:layout_height="71dp"
+          android:layout_marginTop="24dp"
+          android:background="@drawable/ellipse_state"
+          android:clickable="true"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintTop_toBottomOf="@id/how_many_people_text_view"
+          >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_minus"
+            />
+
+      </RelativeLayout>
+
+      <TextView
+          android:id="@+id/percent_tip_text_view"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:text="@string/percent_tip"
+          android:textAppearance="?textAppearanceSubtitle1"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/add_counter_view"
+          />
+
+      <EditText
+          android:id="@+id/percent_tip_edit_text"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="24dp"
+          android:background="@drawable/rectangle"
+          android:drawableEnd="@drawable/ic_percent"
+          android:gravity="center"
+          android:hint="@string/default_tip"
+          android:inputType="number"
+          android:maxLength="8"
+          android:maxLines="1"
+          android:paddingEnd="11dp"
+          android:textAppearance="?textAppearanceHeadline3"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/percent_tip_text_view"
+          />
+
+      <TextView
+          android:id="@+id/total_tip_text_view"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:text="@string/total_tip"
+          android:textAppearance="?textAppearanceSubtitle1"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/percent_tip_edit_text"
+          />
+
+      <TextView
+          android:id="@+id/total_tip_value_text_view"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="32dp"
+          android:gravity="end"
+          android:textAppearance="?textAppearanceSubtitle1"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@+id/total_tip_text_view"
+          app:layout_constraintTop_toBottomOf="@id/percent_tip_edit_text"
+          tools:text="$10.00"
+          />
+
+      <TextView
+          android:id="@+id/per_person_text_view"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:text="@string/per_person"
+          android:textAppearance="?textAppearanceHeadline5"
+          app:layout_constraintStart_toEndOf="@id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/total_tip_text_view"
+          />
+
+      <TextView
+          android:id="@+id/per_person_value_text_view"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="32dp"
+          android:gravity="end"
+          android:textAppearance="?textAppearanceHeadline5"
+          app:layout_constraintEnd_toStartOf="@id/end_guideline"
+          app:layout_constraintStart_toEndOf="@+id/per_person_text_view"
+          app:layout_constraintTop_toBottomOf="@id/total_tip_text_view"
+          tools:text="$10.00"
+          />
+
+      <CheckBox
+          android:id="@+id/take_photo_check_box"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="48dp"
+          android:layout_marginBottom="100dp"
+          android:text="@string/take_photo"
+          android:textAppearance="?textAppearanceSubtitle1"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="@+id/start_guideline"
+          app:layout_constraintTop_toBottomOf="@id/per_person_value_text_view"
+          app:layout_constraintVertical_bias="0"
+          />
+
+      <!-- Guidelines -->
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/start_guideline"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          app:layout_constraintGuide_begin="24dp"
+          />
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/end_guideline"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          app:layout_constraintGuide_end="24dp"
+          />
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/top_guideline"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_begin="33dp"
+          />
+
+      <androidx.constraintlayout.widget.Guideline
+          android:id="@+id/bottom_guideline"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_end="24dp"
+          />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.core.widget.NestedScrollView>
+
+
+  <Button
+      android:id="@+id/save_payment_button"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="24dp"
+      android:text="@string/save_payment"
+      android:textAllCaps="false"
+      android:textAppearance="?textAppearanceSubtitle1"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

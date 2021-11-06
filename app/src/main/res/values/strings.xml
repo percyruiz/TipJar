@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">TipJar</string>
+
+    <!-- Add Tips -->
+    <string name="save_payment">Save Payment</string>
+    <string name="default_payment_hint">100.00</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="how_many_people">How many people?</string>
+    <string name="percent_tip">% TIP</string>
+    <string name="default_tip">10</string>
+    <string name="total_tip">Total Tip</string>
+    <string name="per_person">Per Person</string>
+    <string name="total_tip_value">"\$ %1$.2f"</string>
+    <string name="per_person_value">"\$ %1$.2f"</string>
+    <string name="take_photo">Take photo of receipt</string>
+    <string name="payment_saved_msg">"Payment saved!"</string>
+    <string name="permission_rationale_msg">"Please allow camera and write storage permission to save photo"</string>
+
+    <!-- View Tips -->
+    <string name="saved_payments">Saved Payments</string>
+    <string name="date_picker_start_hint">start</string>
+    <string name="date_picker_end_hint">end</string>
+    <string name="date_format">"%1$d/%2$d/%3$d"</string>
+    
+    <!-- Error -->
+    <string name="camera_permission_denied">Cannot add photo since camera permission is denied</string>
+    <string name="start_date_null">Cannot add photo since camera permission is denied</string>
+    <string name="end_date_null">Cannot add photo since camera permission is denied</string>
+
+    <!-- Tip Item -->
+    <string name="tip_item_total">"\$%1$.2f"</string>
+    <string name="tip_item_tip_value">"Tip: \$%1$.2f"</string>
 </resources>
