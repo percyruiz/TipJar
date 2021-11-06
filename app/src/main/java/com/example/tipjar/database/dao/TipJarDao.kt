@@ -15,7 +15,7 @@ interface TipJarDao {
   @Query("SELECT * FROM tip ORDER BY timestamp DESC")
   fun getAll(): PagingSource<Int, Tip>
 
-  @Query("SELECT * FROM tip WHERE timestamp BETWEEN :start AND :end")
+  @Query("SELECT * FROM tip WHERE timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
   fun getWithRange(start: Long, end: Long): PagingSource<Int, Tip>
 
   @Delete
