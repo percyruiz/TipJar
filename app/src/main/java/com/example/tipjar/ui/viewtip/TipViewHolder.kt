@@ -25,7 +25,7 @@ class TipViewHolder(
 ) :
   RecyclerView.ViewHolder(view) {
 
-  private var tip: Tip? = null
+  var tip: Tip? = null
   private val binding = TipItemBinding.bind(itemView)
   private val dateTextView = binding.dateTextView
   private val totalTextView = binding.totalTextView

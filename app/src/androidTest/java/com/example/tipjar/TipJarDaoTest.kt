@@ -56,4 +56,26 @@ class AccountDAOTest {
       Assert.assertEquals(tip, it)
     }
   }
+
+  @Test
+  fun delete() = runBlockingTest {
+    val tip = Tip(1, 100.0f, 10.0f, "path", System.currentTimeMillis())
+    db.tipJarDao().insert(tip)
+    var result = async {
+      db.tipJarDao().getTip(1)
+    }
+
+    result.await().let {
+      Assert.assertEquals(tip, it)
+    }
+
+    db.tipJarDao().delete(tip)
+    result = async {
+      db.tipJarDao().getTip(1)
+    }
+
+    result.await().let {
+      Assert.assertEquals(null, it)
+    }
+  }
 }
