@@ -22,7 +22,7 @@ import java.io.File
 /**
  * DialogFragment for showing viewing the tip details upon clicking on the list item
  */
-class ViewTipDialogFragment private constructor(): DialogFragment() {
+class ViewTipDialogFragment: DialogFragment() {
 
   private var _binding: FragmentViewTipDialogBinding? = null
   private val binding
