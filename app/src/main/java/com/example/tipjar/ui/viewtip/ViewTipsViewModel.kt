@@ -8,9 +8,11 @@ import androidx.paging.cachedIn
 import com.example.tipjar.data.Search
 import com.example.tipjar.database.entity.Tip
 import com.example.tipjar.repository.TipJarRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Contains logic for viewing and searching tips
@@ -18,7 +20,8 @@ import kotlinx.coroutines.launch
  * @property repository data source for [Tip] related data
  * @property handle data source having a persistent variable for search range
  */
-class ViewTipsViewModel(
+@HiltViewModel
+class ViewTipsViewModel @Inject constructor(
   private val repository: TipJarRepository,
   private val handle: SavedStateHandle
 ) : ViewModel() {

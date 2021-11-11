@@ -1,8 +1,7 @@
 package com.example.tipjar.di
 
 import android.content.Context
-import androidx.room.Room
-import com.example.tipjar.database.TipDatabase
+import com.bumptech.glide.Glide
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,13 +11,9 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object DatabaseModule {
-    @Singleton
-    @Provides
-    fun providesTipDatabase(
-        @ApplicationContext context: Context
-    ): TipDatabase = Room.databaseBuilder(
-      context,
-      TipDatabase::class.java, "tipjarapp"
-    ).build()
+object GlideModule {
+
+  @Provides
+  @Singleton
+  fun provideGlide(@ApplicationContext context: Context) = Glide.with(context)
 }

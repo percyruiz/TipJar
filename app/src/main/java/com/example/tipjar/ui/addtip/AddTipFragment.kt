@@ -19,6 +19,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -27,8 +29,10 @@ import com.example.tipjar.custom.RepeatListener
 import com.example.tipjar.data.Result
 import com.example.tipjar.databinding.FragmentAddTipBinding
 import com.example.tipjar.ui.MainSharedViewModel
+import com.example.tipjar.ui.viewtip.ViewTipsViewModel
 import com.example.tipjar.util.debounce
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -40,14 +44,15 @@ import java.io.File
 /**
  * View for adding tips
  */
+@AndroidEntryPoint
 class AddTipFragment : Fragment() {
 
   private var _binding: FragmentAddTipBinding? = null
   private val binding
     get() = _binding!!
 
-  private val viewModel: AddTipViewModel by viewModel()
-  private val sharedViewModel by sharedViewModel<MainSharedViewModel>()
+  private val viewModel by viewModels<AddTipViewModel>()
+  private val sharedViewModel by activityViewModels<MainSharedViewModel>()
 
   var currentPhotoPath: String? = null
 

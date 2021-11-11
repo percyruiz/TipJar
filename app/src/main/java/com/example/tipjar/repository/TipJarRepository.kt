@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
 interface TipJarRepository {
   suspend fun addTip(total: Float, tipValue: Float, photoPath: String?): Flow<Result<Boolean>>
@@ -23,7 +24,7 @@ interface TipJarRepository {
  *
  * @property db App's database instance
  */
-class TipJarRepositoryImpl(val db: TipDatabase) : TipJarRepository {
+class TipJarRepositoryImpl @Inject constructor(val db: TipDatabase) : TipJarRepository {
 
   override suspend fun addTip(
     total: Float,

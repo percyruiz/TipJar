@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -13,22 +14,23 @@ import com.bumptech.glide.RequestManager
 import com.example.tipjar.R
 import com.example.tipjar.databinding.FragmentViewTipsBinding
 import com.example.tipjar.util.debounce
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import org.threeten.bp.LocalDate
 import org.threeten.bp.ZoneId
 import org.threeten.bp.format.DateTimeFormatter
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ViewTipsFragment : Fragment() {
 
   private var _binding: FragmentViewTipsBinding? = null
   private val binding
     get() = _binding!!
 
-  private val viewModel: ViewTipsViewModel by stateViewModel()
-  private val glide: RequestManager by inject()
+  private val viewModel by viewModels<ViewTipsViewModel>()
+  @Inject lateinit var glide: RequestManager
 
   override fun onCreateView(
     inflater: LayoutInflater,
