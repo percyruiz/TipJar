@@ -16,12 +16,15 @@ import com.example.tipjar.R
 import com.example.tipjar.database.entity.Tip
 import com.example.tipjar.databinding.FragmentViewTipDialogBinding
 import com.example.tipjar.util.toDate
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.android.ext.android.inject
 import java.io.File
+import javax.inject.Inject
 
 /**
  * DialogFragment for showing viewing the tip details upon clicking on the list item
  */
+@AndroidEntryPoint
 class ViewTipDialogFragment: DialogFragment() {
 
   private var _binding: FragmentViewTipDialogBinding? = null
@@ -29,7 +32,7 @@ class ViewTipDialogFragment: DialogFragment() {
     get() = _binding!!
 
   private var tip: Tip? = null
-  private val glide: RequestManager by inject()
+  @Inject lateinit var glide: RequestManager
 
   override fun onAttach(context: Context) {
     super.onAttach(context)

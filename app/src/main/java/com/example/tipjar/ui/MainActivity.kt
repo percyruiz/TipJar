@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -16,7 +17,6 @@ import com.example.tipjar.R
 import com.example.tipjar.databinding.ActivityMainBinding
 import com.example.tipjar.ui.addtip.AddTipFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * View activity that handles navigation and setting toolbar views/status
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
   private var isBackButtonVisible = false
   private var isMenuVisible = false
 
-  private val sharedViewModel by viewModel<MainSharedViewModel>()
+  private val sharedViewModel by viewModels<MainSharedViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

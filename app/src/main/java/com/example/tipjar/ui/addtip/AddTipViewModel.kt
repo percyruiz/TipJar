@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tipjar.data.Result
 import com.example.tipjar.repository.TipJarRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -12,13 +13,15 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Contains logic for adding tips
  *
  * @property repository data source for [Tip] related data
  */
-class AddTipViewModel(
+@HiltViewModel
+class AddTipViewModel @Inject constructor(
   private val repository: TipJarRepository,
   private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
