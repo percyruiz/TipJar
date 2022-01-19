@@ -33,7 +33,7 @@ The app uses MVVM architecture which takes advantage of Android Jetpack's Androi
 </p>
 
 ## Dependencies
-- Dependency injection (with [Koin](https://www.koin.com/))
+- Dependency injection (with [Hilt](https://developer.android.com/training/dependency-injection/hilt-android))
 - Reactive programming (with [Kotlin Flows](https://kotlinlang.org/docs/reference/coroutines/flow.html))
 - Paging implementation (with [Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview))
 - Google [Material Design](https://material.io/blog/android-material-theme-color) library
